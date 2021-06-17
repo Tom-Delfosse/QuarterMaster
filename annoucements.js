@@ -7,7 +7,6 @@ module.exports = (client, config) => {
     chanList.push(chan.name)
   })
 
-  // console.log(JSON.stringify(chanList).replace(/["\[\]]/g, '').replace(/,/g, '\n').replace(/[A-zÀ-ù-]+/g, '— $&'))
 
   client.on("message", (message) => {
     if (message.channel.id === config.CHANNELS[0].value && !message.author.bot){
@@ -26,14 +25,12 @@ module.exports = (client, config) => {
           message.reply("Il y a une vraisemblablement avec le nom du channel. 😞\n Pour envoyer un message dans un channel bien spécifique, entrez la commande suivante ↓ ```/say -nomDuChannel votreMessage```\nPour avoir une liste des channels ↓ ```/chanList```")
         }
 
-      } else if ( message.content.startsWith('/chanlist')){
+      } else if ( message.content.startsWith('/chanlist') && !message.author.bot){
         let string = JSON.stringify(chanList).replace(/["\[\]]/g, '').replace(/,/g, '\n').replace(/[A-zÀ-ù-]+/g, '— $&')
         console.log(string)
           message.channel.send(string)
 
-      } else if (!message.author.bot){
-        message.reply("Il y a une erreur au niveau de la nomenclature de la commande. 😞\nPour envoyer un message dans un channel bien spécifique, entrez la commande suivante ↓ ```/say -nomDuChannel votreMessage.```\nPour avoir une liste des channels ↓ ```/chanList```")
-      }
+      } 
     }
   })
 }

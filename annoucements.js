@@ -23,6 +23,8 @@ module.exports = (client, config) => {
         })
         if (!msgSent === true) {
           message.reply("Il y a une vraisemblablement avec le nom du channel. 😞\n Pour envoyer un message dans un channel bien spécifique, entrez la commande suivante ↓ ```/say -nomDuChannel votreMessage```\nPour avoir une liste des channels ↓ ```/chanList```")
+        } else {
+          message.reply("Message envoyé dans le channel spécifié ! 🥳")
         }
 
       } else if ( message.content.startsWith('/chanlist') && !message.author.bot){

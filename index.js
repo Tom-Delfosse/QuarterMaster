@@ -2,19 +2,10 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 const privateMsg = require("./privateMsg.js");
 const annoucements = require("./annoucements.js");
-
-
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+require('dotenv').config();
 
 const client = new Discord.Client();
-readline.question("What is the Bot Token?", token => {
-  client.login(token)
-  readline.close();
-});
-
+client.login()
 
 client.on('ready', () => {
   console.log('Authentification Granted!' );

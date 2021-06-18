@@ -16,6 +16,3 @@ client.on('ready', () => {
     type: 'LISTENING'
   })
 })
-
-
-

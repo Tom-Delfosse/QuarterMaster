@@ -9,7 +9,7 @@ module.exports = (client, config) => {
 
 
   client.on("message", (message) => {
-    if (message.channel.id === config.CHANNELS[0].value && !message.author.bot){
+    if (message.channel.id === config.CHANNELS_OFF[0].value && !message.author.bot){
       if (message.content.match(startSay)) {
         const chanNoPrefix = message.content.match(chanString)[0].slice(1).toLowerCase()
         const messageBody = message.content.replace(startSay, '')

@@ -9,7 +9,7 @@ const client = new Discord.Client();
 client.login()
 
 client.on('ready', () => {
-  privateMsg(client, config, "Merci du feedback !\n\nNous évaluerons votre suggestion pour d'éventuelles mises à jour du serveur. 🥳")
+  privateMsg(client, config, "Votre message a été transmis au staff et sera traité dans les plus brefs délais. 🥳")
   privateAnswer(client, config)
   annoucements(client, config)
   client.user.setActivity('ses DMs pour du feedback !', {

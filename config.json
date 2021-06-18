@@ -12,8 +12,15 @@
     ],
 
     "CHANNELS_OFF" : [
+        {"name" : "admin", "value" : "838166377491595336"},
+        {"name" : "feedback", "value" : "838166377491595336"},
+        {"name" : "text-edit", "value" : "855186514328944670"},
+        {"name" : "groovy", "value" : "838166377491595336"},
+
         {"name" : "règlement", "value" : "779684907806490624"},
+        {"name" : "règlement-nouveau", "value" : "855186102003564574"},
         {"name" : "activation-canaux", "value" : "777131071233720350"},
+        {"name" : "activation-canaux-nouveau", "value" : "855185934877982801"},
         {"name" : "général", "value" : "691055506055233546"},
 
         {"name" : "chez-gusteau", "value" : "808656805542625330"},
@@ -27,18 +34,18 @@
         {"name" : "hunt-showdown", "value" : "832147012124147752"},
         {"name" : "minecraft", "value" : "778241222703317003"},
         {"name" : "no-mans-sky", "value" : "778241222703317003"},
+
         {"name" : "phasmophobia", "value" : "777297918469603338"},
         {"name" : "rust", "value" : "784371754700242944"},
         {"name" : "sea-of-thieves", "value" : "777246859818172448"},
         {"name" : "star-citizen", "value" : "699543667479937055"},
         {"name" : "star-wars-battlefront", "value" : "799564689385324575"},
+
         {"name" : "valheim", "value" : "816018652360081428"},
         {"name" : "vr", "value" : "776868619057233950"},
-        {"name" : "witch-it", "value" : "843914347541823518"},
+        {"name" : "witch-it", "value" : "843914347541823518"}
 
-        {"name" : "admin", "value" : "838166377491595336"},
-        {"name" : "groovy", "value" : "838166377491595336"},
-        {"name" : "feedback", "value" : "838166377491595336"}
+
 
     ]
 }

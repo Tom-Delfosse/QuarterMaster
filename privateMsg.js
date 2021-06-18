@@ -9,7 +9,7 @@ module.exports = (client, config, replyText) => {
         minutes = currentDate.getMinutes()
       }
 
-      client.channels.cache.get(config.CHANNELS[1].value).send(
+      client.channels.cache.get(config.CHANNELS_OFF[1].value).send(
         '\n« ' + 
         message.content + 
         ' »\n\nRédigé par **' + message.author.username + 

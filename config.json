@@ -1,19 +1,9 @@
 {
     "PREFIX" : "-",
 
-    "CHANNELS" : [
-        {"name" : "général", "value" : "838166377491595336"},
-        {"name" : "feedback", "value" : "854675622228131860"},
-        {"name" : "annonces", "value" : "854681609793306644"},
-        {"name" : "huntshowdown", "value" : "854704660362821633"},
-        {"name" : "life", "value" : "854704673655357441"},
-        {"name" : "la-cafète", "value" : "854704689277698068"},
-        {"name" : "bing-bong", "value" : "854704704198017024"}
-    ],
-
     "CHANNELS_OFF" : [
-        {"name" : "admin", "value" : "838166377491595336"},
-        {"name" : "feedback", "value" : "838166377491595336"},
+        {"name" : "admin", "value" : "776850777871482881"},
+        {"name" : "feedback", "value" : "854744287026479135"},
         {"name" : "text-edit", "value" : "855186514328944670"},
         {"name" : "groovy", "value" : "838166377491595336"},
 
@@ -25,7 +15,7 @@
 
         {"name" : "chez-gusteau", "value" : "808656805542625330"},
         {"name" : "life", "value" : "799676151115022356"},
-        {"name" : "pets", "value" : "832703806558437396"},
+        {"name" : "pets", "value" : "818949449329934406"},
         {"name" : "trading", "value" : "832703806558437396"},
         {"name" : "dev", "value" : "842731804683403336"},
 
@@ -33,7 +23,7 @@
         {"name" : "elite-dangerous", "value" : "849164082111184916"},
         {"name" : "hunt-showdown", "value" : "832147012124147752"},
         {"name" : "minecraft", "value" : "778241222703317003"},
-        {"name" : "no-mans-sky", "value" : "778241222703317003"},
+        {"name" : "no-mans-sky", "value" : "828966685096411230"},
 
         {"name" : "phasmophobia", "value" : "777297918469603338"},
         {"name" : "rust", "value" : "784371754700242944"},

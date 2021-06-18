@@ -3,7 +3,7 @@ module.exports = (client, config) => {
   const chanString = new RegExp(config.PREFIX + '[A-zÀ-ù-]+')
 
   const chanList = []
-  config.CHANNELS.forEach((chan, index) => {
+  config.CHANNELS_OFF.forEach((chan, index) => {
     chanList.push(chan.name)
   })
 
@@ -14,7 +14,7 @@ module.exports = (client, config) => {
         const chanNoPrefix = message.content.match(chanString)[0].slice(1).toLowerCase()
         const messageBody = message.content.replace(startSay, '')
         let msgSent = false
-        config.CHANNELS.forEach(chan => {
+        config.CHANNELS_OFF.forEach(chan => {
           if (chan.name === chanNoPrefix){
             client.channels.cache.get(chan.value).send(messageBody)
             msgSent = true

@@ -29,8 +29,7 @@ module.exports = (client, config) => {
 
       } else if ( message.content.startsWith('/chanlist') && !message.author.bot){
         let string = JSON.stringify(chanList).replace(/["\[\]]/g, '').replace(/,/g, '\n').replace(/[A-zÀ-ù-]+/g, '— $&')
-        console.log(string)
-          message.channel.send(string)
+        message.channel.send(string)
 
       } 
     }

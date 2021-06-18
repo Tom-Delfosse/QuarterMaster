@@ -22,8 +22,10 @@ module.exports = (client, config, replyText) => {
         ' à ' + currentDate.getHours() +
         ':' + 
         minutes +
-        '.\n__')
-
+        ".\nCode de l'utilisateur : //" +
+        message.author.id +
+        '\n__'
+        )
       message.author.send(replyText).catch(console.error)
     }
   })

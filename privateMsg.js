@@ -1,4 +1,4 @@
-module.exports = (client, config, replyText) => {
+module.exports = (client, replyText) => {
   client.on('message', message => {
     if (message.channel.type === 'dm' && !message.author.bot){
       const currentDate = new Date();

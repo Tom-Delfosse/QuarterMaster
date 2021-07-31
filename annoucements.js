@@ -1,4 +1,4 @@
-module.exports = (client, config, command) => {
+module.exports = (client, command) => {
   const Prefix = new RegExp(command + ' <#[0-9]+>')
   const chanRawReg = new RegExp('<#[0-9]+>')
   

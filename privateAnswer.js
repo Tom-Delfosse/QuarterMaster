@@ -1,4 +1,4 @@
-module.exports = (client, config) => {
+module.exports = (client) => {
   client.on('message', message => {
     if (message.channel.name === "feedback" && !message.author.bot){
       if (message.reference){

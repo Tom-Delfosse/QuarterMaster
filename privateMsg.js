@@ -8,8 +8,7 @@ module.exports = (client, config, replyText) => {
       } else {
         minutes = currentDate.getMinutes()
       }
-
-      client.channels.cache.get(config.CHANNELS_OFF[1].value).send(
+      client.channels.cache.find(channel => channel.name === "feedback").send(
         '\n« ' + 
         message.content + 
         ' »\n\nRédigé par **' + message.author.username + 

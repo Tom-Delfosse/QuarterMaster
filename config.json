@@ -2,6 +2,7 @@
     "PREFIX" : "-",
 
     "CHANNELS_OFF" : [
+        {"name" : "test-bot", "value" : "871072436622340146"},
         {"name" : "admin", "value" : "776850777871482881"},
         {"name" : "feedback", "value" : "854744287026479135"},
         {"name" : "text-edit", "value" : "855186514328944670"},

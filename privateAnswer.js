@@ -1,6 +1,6 @@
 module.exports = (client, config) => {
   client.on('message', message => {
-    if (message.channel.id === config.CHANNELS_OFF[1].value && !message.author.bot){
+    if (message.channel.name === "feedback" && !message.author.bot){
       if (message.reference){
         let messageContent = message.content
 
@@ -23,7 +23,4 @@ module.exports = (client, config) => {
       }
     }
   })
-
-  
-
 }

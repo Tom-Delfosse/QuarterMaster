@@ -1,6 +1,6 @@
 {
   "name": "quartermaster",
-  "version": "1.0.0",
+  "version": "1.8.0",
   "description": "Simple Discord Bot using the Discord API",
   "main": "quartermaster.js",
   "scripts": {

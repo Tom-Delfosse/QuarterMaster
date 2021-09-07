@@ -3,7 +3,7 @@ module.exports = (client, command) => {
   const chanRawReg = new RegExp('<#[0-9]+>')
   
   client.on('message', (message) => {
-    if (message.content.startsWith('/') && !message.author.bot && (message.channel.name === "admin" || message.channel.name === "test-bot")){
+    if (message.content.startsWith('/say') && !message.author.bot && (message.channel.name === "admin" || message.channel.name === "test-bot")){
       if (message.content.match(command)){
 
         if (message.content.match(chanRawReg)){

@@ -1,30 +1,58 @@
 const { VoiceState, DiscordAPIError, NewsChannel } = require("discord.js")
 
-module.exports = (client, vocalChans, boats, chanSet) => {
-// console.log(boats)
-// console.log(vocalChans)
+module.exports = (client, chanSet, boats, vocalChans) => {
   client.on("voiceStateUpdate", (oldState, newState) => {
-      if (newState.channel != null && vocalChans.some(e => e.id === newState.channel.id)){
-        let i = vocalChans.findIndex(e => e.id === newState.channel.id)
+    if (newState.guild.premiumTier >= 1){
+      bitRate = 128000
+    } else {
+      bitRate = 64000
+    }
+    
+    if (newState.channel != null){
+      let chanCreate = () => {
+        let chanName = '`☕ La cafète`'
+        let userCap = 0
+        if (vocalChans.some(e => e.id === newState.channel.id)) {
+          let i = vocalChans.findIndex(e => e.id === newState.channel.id) 
+          chanName = vocalChans[i].prefix + boats[Math.floor(Math.random() * (boats.length ))]
+          userCap = vocalChans[i].userCap
 
-        let chanCreate = () => {
-          const chanName = vocalChans[i].prefix + boats[Math.floor(Math.random() * (boats.length ))]
-          parentID = newState.channel.parentID
-          return newState.guild.channels.create(chanName, {
-            bitrate : 128000,
-            type: 'voice',
-            parent: parentID,
-            userLimit : vocalChans[i].userCap
-          })
+        } else if (newState.channel.name === '➕ Lancer une partie'){
+          if (newState.member.presence.activities.length > 0  && newState.member.presence.activities[0].type == 'PLAYING'){
+            chanName = newState.member.presence.activities[0].name
+          } else {
+            chanName = `☕ La cafète`
+          }
         }
+        const parentID = newState.channel.parentID
 
-        let moveToChan = async  () => {
+        return newState.guild.channels.create(chanName, {
+          bitrate : bitRate,
+          type :'voice',
+          parent: parentID
+        })
+      }
+
+      let moveToChan = async () => {
+        try{
           let newChan = await chanCreate()
           newState.member.voice.setChannel(newChan.id)
           chanSet.add(newChan.id)
+        } catch(error) {
+          newState.member.send(`Une erreur est survenue avec le système de vocal. Vous pouvez prévenir le capitaine en m'envoyant un message !`)
+          console.error(error)
         }
-
-        moveToChan()
       }
+
+      if (vocalChans.some(e => e.id === newState.channel.id) || newState.channel.name === '➕ Lancer une partie'){
+        moveToChan()
+      } 
+    }
+
+      
+    if (oldState.channel != null && chanSet.has(oldState.channel.id) && oldState.channel.members.size === 0 ){
+      chanSet.delete(oldState.channel.id)
+      oldState.channel.delete()
+    }
   })
 }

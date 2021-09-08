@@ -3,7 +3,6 @@ const privateMsg = require("./privateMsg.js");
 const privateAnswer = require("./privateAnswer.js");
 const annoucements = require("./annoucements.js");
 const createVocals = require("./createVocals.js");
-const legendVocals = require("./legendVocals.js");
 const promptVocal = require("./promptVocal.js");
 const boats = require("./boats.json");
 require('dotenv').config();
@@ -16,8 +15,7 @@ client.login()
 
 client.on('ready', () => {
   promptVocal(client, '/vc', vocalChans)
-  createVocals(client, vocalChans, boats, chanSet)
-  legendVocals(client, chanSet, boats)
+  createVocals(client, chanSet, boats, vocalChans)
   privateMsg(client, "Votre message a été transmis au staff et sera traité dans les plus brefs délais. 🥳")
   privateAnswer(client)
   annoucements(client, '/say')
@@ -25,4 +23,3 @@ client.on('ready', () => {
     type: 'LISTENING'
   })
 })
-console.log('ready')

@@ -1,4 +1,4 @@
-const { VoiceState, DiscordAPIError, NewsChannel } = require("discord.js")
+const { VoiceState, DiscordAPIError, NewsChannel, Presence, Guild } = require("discord.js")
 
 module.exports = (client, chanSet, boats, vocalChans) => {
   client.on("voiceStateUpdate", (oldState, newState) => {
@@ -10,7 +10,7 @@ module.exports = (client, chanSet, boats, vocalChans) => {
     
     if (newState.channel != null){
       let chanCreate = () => {
-        let chanName = '`☕ La cafète`'
+        let chanName = '☕ La cafète'
         let userCap = 0
         if (vocalChans.some(e => e.id === newState.channel.id)) {
           let i = vocalChans.findIndex(e => e.id === newState.channel.id) 
@@ -18,17 +18,18 @@ module.exports = (client, chanSet, boats, vocalChans) => {
           userCap = vocalChans[i].userCap
 
         } else if (newState.channel.name === '➕ Lancer une partie'){
-          if (newState.member.presence.activities.length > 0  && newState.member.presence.activities[0].type == 'PLAYING'){
-            chanName = newState.member.presence.activities[0].name
-          } else {
-            chanName = `☕ La cafète`
-          }
+            let user = newState.guild.presences.cache.filter(user => user.userId === newState.member.id).map((member) => member)
+
+            let gameArray = user[0].activities.filter(e => e.type === 'PLAYING')
+            if (gameArray.length !== 0){
+              chanName = gameArray[0].name
+            }
         }
-        const parentID = newState.channel.parentID
+        const parentID = newState.channel.parentId
 
         return newState.guild.channels.create(chanName, {
           bitrate : bitRate,
-          type :'voice',
+          type :'GUILD_VOICE',
           parent: parentID
         })
       }
@@ -36,11 +37,11 @@ module.exports = (client, chanSet, boats, vocalChans) => {
       let moveToChan = async () => {
         try{
           let newChan = await chanCreate()
-          newState.member.voice.setChannel(newChan.id)
+          newState.member.voice.setChannel(newChan.id).catch(error => {console.log(error)})
           chanSet.add(newChan.id)
         } catch(error) {
           newState.member.send(`Une erreur est survenue avec le système de vocal. Vous pouvez prévenir le capitaine en m'envoyant un message !`)
-          console.error(error)
+          console.log(error)
         }
       }
 

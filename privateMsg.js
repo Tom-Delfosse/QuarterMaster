@@ -1,6 +1,6 @@
-module.exports = (client, replyText) => {
-  client.on('message', message => {
-    if (message.channel.type === 'dm' && !message.author.bot){
+module.exports = (client) => {
+  client.on('messageCreate', message => {
+    if (message.channel.type === 'DM' && !message.author.bot){
       const currentDate = new Date();
       let minutes = '00'
       if (currentDate.getMinutes() < 10){
@@ -25,7 +25,7 @@ module.exports = (client, replyText) => {
         message.author.id +
         '\n__'
         )
-      message.author.send(replyText).catch(console.error)
+      message.author.send("Votre message a été transmis au staff et sera traité dans les plus brefs délais. 🥳").catch(console.error)
     }
   })
 

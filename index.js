@@ -1,32 +1,30 @@
 const {Client, Intents, Discord} = require("discord.js");
+require('dotenv').config();
 const privateMsg = require("./privateMsg.js");
 const privateAnswer = require("./privateAnswer.js");
 const annoucements = require("./annoucements.js");
 const createVocals = require("./createVocals.js");
 const addVocalMaster = require("./addVocalMaster.js")
+const removeVocalMaster = require("./removeVocalMaster.js")
 const newVocalMaster = require("./newVocalMaster.js")
 const stopVocalMaster = require("./stopVocalMaster.js")
-// const promptVocal = require("./promptVocal.js");
-// const repGiver = require(("./repGiver.js"))
-// const threadHandler = require(("./threadHandler.js"))
 const boats = require("./boats.json");
-require('dotenv').config();
-const threadSet = new Array()
 const chanSet = new Set([])
-const vocalChans = new Array() // liste des vocaux qui créent des vocaux temporaires
+const vocalChans = new Array(
+  { id : '886407609878446090', userCap: '0', prefix: 'Sloop — '},
+  { id : '887054454136905758', userCap: '0', prefix: 'Brig — '},
+  { id : '886408103233478666', userCap: '0', prefix: 'Gallion — '}
+) 
 const progressArray = new Array()
 
 const client = new Client({ intents: [Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_PRESENCES], partials: ["CHANNEL"]})
 client.login()
 
 client.on('ready', () => {
-  // repGiver(client, '/reput', threadSet)
-  // threadHandler(client, threadSet)
-  // promptVocal(client, '/vc', vocalChans)
-  // repGiver(client, '/rep')
-  // addVocalMaster(client, '/vc add', vocalChans)
-  stopVocalMaster(client, 'vc stop', progressArray)
+  stopVocalMaster(client, '/vc stop', progressArray)
   newVocalMaster(client, '/vc new', vocalChans, progressArray)
+  addVocalMaster(client, '/vc add', vocalChans, progressArray)
+  removeVocalMaster(client, '/vc delete', vocalChans, progressArray)
   createVocals(client, chanSet, boats, vocalChans)
   privateMsg(client)
   privateAnswer(client)

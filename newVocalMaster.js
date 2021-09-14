@@ -1,6 +1,6 @@
 module.exports = (client, command, vocalChans, progressArray) => {
   client.on('messageCreate', (message) => {
-    if (!message.author.bot && (message.content.match(command) || progressArray.find(e => e.chanID === message.channel.id)) && (message.channel.name === 'test-bot' || message.channel.name === 'admin')){
+    if (!message.author.bot && (message.content.match(command) || (progressArray.find(e => e.chanID === message.channel.id) && progressArray.find(e => e.command === 'new'))) && (message.channel.name === 'test-bot' || message.channel.name === 'admin')){
 
       if (message.guild.premiumTier >= 1){
         bitRate = 128000
@@ -9,13 +9,12 @@ module.exports = (client, command, vocalChans, progressArray) => {
       }
       
       if (!progressArray.find(e => e.chanID === message.channel.id)){
-        console.log(message.channel.id)
         let chanProgress = {
           chanID : message.channel.id,
+          command : 'new',
           progress : 1
         }
         progressArray.push(chanProgress)
-        console.log(progressArray)
       }
       
       let i = progressArray.findIndex(e => e.chanID === message.channel.id)

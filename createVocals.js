@@ -30,7 +30,8 @@ module.exports = (client, chanSet, boats, vocalChans) => {
         return newState.guild.channels.create(chanName, {
           bitrate : bitRate,
           type :'GUILD_VOICE',
-          parent: parentID
+          parent: parentID,
+          userLimit: userCap
         })
       }
 

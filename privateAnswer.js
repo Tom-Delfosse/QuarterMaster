@@ -1,25 +1,33 @@
 module.exports = (client) => {
-  client.on('message', message => {
+  client.on('messageCreate', message => {
     if (message.channel.name === "feedback" && !message.author.bot){
-      if (message.reference){
-        let messageContent = message.content
+      if (message.type === 'REPLY'){
+        let refID = message.reference.messageId
+        let getRef = async () => {
+          let refMsg = await message.channel.messages.fetch(refID)
+          if (refMsg.author.bot){
+            let refUserID = refMsg.content.match(/(\/\/)([0-9]+)/g)[0].replace(/(\/\/)/g, '')
+            sendMsg(refUserID)
+          }
+        }
 
-        message.channel.messages.fetch(message.reference.messageID)
-        .then(message => {
-          if (message.content.match(/\/\/([0-9])+/)[0].length === 20) {
-            let quotedMsg = message.content.match(/\/\/([0-9])+/)[0].replace(/\/\//, '')
-            client.users.fetch(quotedMsg, false)
-            .then((user => {
-              user.send(messageContent)
-            }))
-            .catch(error =>{
-              message.channel.send('Une erreur est parvenue avec la réponse, veuillez réessayer 😞')
+        let sendMsg = async (refUserID) => {
+          try {
+            let user = await client.users.fetch(refUserID)
+            if (!user.bot){
+              user.send(message.content)
+              message.react('✅')
+            }
+
+          } catch {
+            message.reply({
+              content : `Une erreur est survenue : il semblerait que l'utilisateur soit introuvable. Est-il toujours sur le serveur ?`,
+              allowedMentions: {repliedUser : false}
             })
           }
-        })
-        .catch(error =>{
-          message.channel.send(`Une erreur est parvenue avec l'obtention de l'auteur·trice du message original, veuillez réessayer 😞`)
-        })
+        }
+
+        getRef()
       }
     }
   })

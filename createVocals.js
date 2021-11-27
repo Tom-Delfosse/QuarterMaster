@@ -2,10 +2,10 @@ const { VoiceState, DiscordAPIError, NewsChannel, Presence, Guild } = require("d
 
 module.exports = (client, chanSet, boats, vocalChans) => {
   client.on("voiceStateUpdate", (oldState, newState) => {
-    if (newState.guild.premiumTier >= 1){
+    if (newState.guild.premiumTier != "NONE"){
       bitRate = 128000
     } else {
-      bitRate = 64000
+      bitRate = 96000
     }
     
     if (newState.channel != null){
@@ -20,10 +20,13 @@ module.exports = (client, chanSet, boats, vocalChans) => {
         } else if (newState.channel.name === '➕ Lancer une partie'){
             let user = newState.guild.presences.cache.filter(user => user.userId === newState.member.id).map((member) => member)
 
-            let gameArray = user[0].activities.filter(e => e.type === 'PLAYING')
-            if (gameArray.length !== 0){
-              chanName = gameArray[0].name
+            if (user.length !== 0) {
+              let gameArray = user[0].activities.filter(e => e.type === 'PLAYING')
+              if (gameArray.length !== 0){
+                chanName = gameArray[0].name
+              }
             }
+
         }
         const parentID = newState.channel.parentId
 
@@ -51,7 +54,6 @@ module.exports = (client, chanSet, boats, vocalChans) => {
       } 
     }
 
-      
     if (oldState.channel != null && chanSet.has(oldState.channel.id) && oldState.channel.members.size === 0 ){
       chanSet.delete(oldState.channel.id)
       oldState.channel.delete()

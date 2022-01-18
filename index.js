@@ -8,6 +8,7 @@ const addVocalMaster = require("./addVocalMaster.js")
 const removeVocalMaster = require("./removeVocalMaster.js")
 const newVocalMaster = require("./newVocalMaster.js")
 const stopVocalMaster = require("./stopVocalMaster.js")
+const everyonePingRemove = require("./everyoneRemove.js")
 const boats = require("./boats.json");
 const chanSet = new Set([])
 const vocalChans = new Array(
@@ -28,6 +29,7 @@ client.on('ready', () => {
   createVocals(client, chanSet, boats, vocalChans)
   privateMsg(client)
   privateAnswer(client)
+  everyonePingRemove(client)
   annoucements(client, '/say')
   client.user.setActivity(`l'équipage`, {
     type: 'LISTENING'

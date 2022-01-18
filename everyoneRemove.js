@@ -1,6 +1,5 @@
 module.exports = (client) => {
   client.on("messageCreate", (message) => {
-    console.log(message.channel.guild.id)
     if (
       !message.author.bot && 
       message.content.match("@everyone") &&

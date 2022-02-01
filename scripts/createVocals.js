@@ -1,6 +1,6 @@
-const { VoiceState, DiscordAPIError, NewsChannel, Presence, Guild } = require("discord.js")
+// const { VoiceState, DiscordAPIError, NewsChannel, Presence, Guild } = require("discord.js")
 
-module.exports = (client, chanSet, boats, vocalChans) => {
+module.exports = (client, chanSet, boats, vocalChans, categoryPlayName, categoryStartName) => {
   client.on("voiceStateUpdate", (oldState, newState) => {
     if (newState.guild.premiumTier != "NONE"){
       bitRate = 128000
@@ -57,6 +57,12 @@ module.exports = (client, chanSet, boats, vocalChans) => {
     if (oldState.channel != null && chanSet.has(oldState.channel.id) && oldState.channel.members.size === 0 ){
       chanSet.delete(oldState.channel.id)
       oldState.channel.delete()
+
+
+      if (newState.guild.channels.cache.find(chan => chan.name === categoryPlayName && chan.type === 'GUILD_CATEGORY') != undefined){
+        newState.guild.channels.cache.find(chan => chan.name === categoryPlayName && chan.type === 'GUILD_CATEGORY').delete()
+        
+      }
     }
   })
 }

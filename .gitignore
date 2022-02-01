@@ -2,5 +2,5 @@ node_modules
 .env
 .vscode/settings.json
 promptVocal copy.js
-assets
+assets/img
 VectorProfile.ai

@@ -3,9 +3,7 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
 
   client.on("voiceStateUpdate", (oldState, newState) => {
     const categoryStart = newState.guild.channels.cache.find(c => c.name === categoryStartName)
-
-
-    if (newState.channel != null && newState.channel.parentId === categoryStart.id) {
+    if (newState.channel != null && categoryStart != undefined && newState.channel.parentId === categoryStart.id) {
 
       if (newState.guild.premiumTier != "NONE") {
         bitRate = 128000

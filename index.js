@@ -1,4 +1,4 @@
-const {Client, Intents, Discord} = require("discord.js");
+const {Client, Intents, Permissions} = require("discord.js");
 require('dotenv').config();
 
 // Scripts
@@ -33,7 +33,7 @@ client.on('ready', () => {
   // createVocals(client, chanSet, boats, vocalChans, categoryPlayName, categoryStartName)
   // CreateVocalsRemaster(client, chanSet, boats, vocalChans, categoryPlayName, categoryStartName)
   CreateVocalsGame(client, chanSet)
-  CreateVocalsBoats(client, chanSetBoats, boats, vocalChans, categoryStartName, categoryPlayName)
+  CreateVocalsBoats(client, chanSetBoats, boats, vocalChans, categoryStartName, categoryPlayName, Permissions)
   privateMsg(client)
   privateAnswer(client)
   everyonePingRemove(client)

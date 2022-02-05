@@ -1,4 +1,4 @@
-module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, categoryPlayName) => {
+module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, categoryPlayName, Permissions) => {
 
 
   client.on("voiceStateUpdate", (oldState, newState) => {
@@ -17,6 +17,12 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
         if (categoryPlay == undefined) {
           newState.guild.channels.create(categoryPlayName, {
             type: 'GUILD_CATEGORY',
+            permissionOverwrites: [
+              {
+                id: newState.guild.id,
+                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+              }
+            ],
             position: newState.guild.channels.cache.find(c => c.id === newState.channel.parentId).position
           }).then((categoryPlayNew) => {
             moveUser(categoryPlayNew)

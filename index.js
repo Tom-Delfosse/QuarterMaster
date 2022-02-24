@@ -5,11 +5,11 @@ require('dotenv').config();
 const privateMsg = require("./scripts/privateMsg.js");
 const privateAnswer = require("./scripts/privateAnswer.js");
 const annoucements = require("./scripts/annoucements.js");
-const createVocals = require("./scripts/createVocals.js");
-const everyonePingRemove = require("./scripts/everyoneRemove.js")
-const CreateVocalsRemaster = require("./scripts/createVocalRemaster.js")
+// const everyonePingRemove = require("./scripts/everyoneRemove.js")
 const CreateVocalsGame = require("./scripts/createVocalGame.js")
 const CreateVocalsBoats = require("./scripts/createVocalBoats.js")
+// const createVocals = require("./scripts/createVocals.js");
+// const CreateVocalsRemaster = require("./scripts/createVocalRemaster.js")
 
 // Data
 const chanSet = new Set([])
@@ -24,8 +24,6 @@ const vocalChans = new Array(
   { id : '887054454136905758', userCap: '0', prefix: 'Brig — ', name: "「 ⛵ 」Créer un Brig"},
   { id : '886408103233478666', userCap: '0', prefix: 'Gallion — ', name: "「 🚢 」Créer un Gallion"}) 
 
-
-
 const client = new Client({ intents: [Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_PRESENCES], partials: ["CHANNEL"]})
 client.login()
 
@@ -36,9 +34,11 @@ client.on('ready', () => {
   CreateVocalsBoats(client, chanSetBoats, boats, vocalChans, categoryStartName, categoryPlayName, Permissions)
   privateMsg(client)
   privateAnswer(client)
-  everyonePingRemove(client)
+  // everyonePingRemove(client)
   annoucements(client, '/say')
   client.user.setActivity(`l'équipage`, {
     type: 'LISTENING'
   })
+
+  console.log(client)
 })

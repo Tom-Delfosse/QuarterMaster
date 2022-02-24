@@ -60,7 +60,6 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
           newState.member.send(`Une erreur est survenue avec la création d'un canal audio. Vous pouvez prévenir le capitaine en m'envoyant un message !`)
         }
       }
-
       categoryCheck()
 
     }

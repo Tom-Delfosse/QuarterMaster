@@ -5,7 +5,7 @@ require('dotenv').config();
 const privateMsg = require("./scripts/privateMsg.js");
 const privateAnswer = require("./scripts/privateAnswer.js");
 const annoucements = require("./scripts/annoucements.js");
-// const everyonePingRemove = require("./scripts/everyoneRemove.js")
+const everyonePingRemove = require("./scripts/everyoneRemove.js")
 const CreateVocalsGame = require("./scripts/createVocalGame.js")
 const CreateVocalsBoats = require("./scripts/createVocalBoats.js")
 // const createVocals = require("./scripts/createVocals.js");
@@ -34,7 +34,7 @@ client.on('ready', () => {
   CreateVocalsBoats(client, chanSetBoats, boats, vocalChans, categoryStartName, categoryPlayName, Permissions)
   privateMsg(client)
   privateAnswer(client)
-  // everyonePingRemove(client)
+  everyonePingRemove(client)
   annoucements(client, '/say')
   client.user.setActivity(`l'équipage`, {
     type: 'LISTENING'

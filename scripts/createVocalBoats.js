@@ -40,6 +40,7 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
           let i = vocalChans.findIndex(e => e.name === newState.channel.name)
           chanName = vocalChans[i].prefix + boats[Math.floor(Math.random() * (boats.length))]
         }
+        console.log('bing')
 
         return newState.guild.channels.create(chanName, {
           bitrate: bitRate,

@@ -2,56 +2,21 @@ module.exports = (client) => {
   client.on('messageCreate', message => {
     if (message.channel.type === 'DM' && !message.author.bot){
       const currentDate = new Date();
-      let minutes = '00'
-      if (currentDate.getMinutes() < 10){
-        minutes = '0' + currentDate.getMinutes()
-      } else {
-        minutes = currentDate.getMinutes()
-      }
+      let FormatedDate = new Intl.DateTimeFormat('fr-FR', {dateStyle: 'full', timeStyle: 'long'}).format(currentDate) 
+      
       client.channels.cache.find(channel => channel.name === "feedback").send(
-        '\n« ' + 
+        '\n« '+
         message.content + 
         ' »\n\nRédigé par **' + message.author.username + 
         '**, le ' + days[currentDate.getDay()] + 
         ' ' + 
-        currentDate.getDate() + 
-        ' ' + 
-        months[currentDate.getMonth()] +
-        ' ' + currentDate.getFullYear() +
-        ' à ' + (currentDate.getHours() + 1)  +
-        ':' + 
-        minutes +
-        " UTC+1.\nCode de l'utilisateur : //" +
+        FormatedDate + '.\n' +
+
+        "Code de l'utilisateur : //" +
         message.author.id +
         '\n__'
         )
       message.author.send("Votre message a été transmis au staff et sera traité dans les plus brefs délais. 🥳").catch(console.error)
     }
   })
-
-  
-const days = [
-  'lundi',
-  'mardi',
-  'mercredi',
-  'jeudi',
-  'vendredi',
-  'samedi',
-  'dimanche',
-]
-
-const months = [
-  'janvier',
-  'février',
-  'mars',
-  'avril',
-  'mai',
-  'juin',
-  'juillet',
-  'août',
-  'septembre',
-  'octobre',
-  'novembre',
-  'décembre',
-]
 }

@@ -8,8 +8,7 @@ module.exports = (client) => {
         '\n« '+
         message.content + 
         ' »\n\nRédigé par **' + message.author.username + 
-        '**, le ' + days[currentDate.getDay()] + 
-        ' ' + 
+        '**, le ' + 
         FormatedDate + '.\n' +
 
         "Code de l'utilisateur : //" +

@@ -17,12 +17,10 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
         if (categoryPlay == undefined) {
           newState.guild.channels.create(categoryPlayName, {
             type: 'GUILD_CATEGORY',
-            permissionOverwrites: [
-              {
-                id: newState.guild.id,
-                allow: [Permissions.FLAGS.VIEW_CHANNEL]
-              }
-            ],
+            permissionOverwrites: [{
+              id: newState.guild.id,
+              allow: [Permissions.FLAGS.VIEW_CHANNEL]
+            }],
             position: newState.guild.channels.cache.find(c => c.id === newState.channel.parentId).position
           }).then((categoryPlayNew) => {
             moveUser(categoryPlayNew)
@@ -40,7 +38,6 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
           let i = vocalChans.findIndex(e => e.name === newState.channel.name)
           chanName = vocalChans[i].prefix + boats[Math.floor(Math.random() * (boats.length))]
         }
-        console.log('bing')
 
         return newState.guild.channels.create(chanName, {
           bitrate: bitRate,
@@ -65,17 +62,25 @@ module.exports = (client, chanSetBoats, boats, vocalChans, categoryStartName, ca
 
     }
 
-    if (oldState.channel != null && oldState.channel.members.size === 0 && chanSetBoats.has(oldState.channel.id) ) {
+    let CategoryDelete = () => {
+      // console.log('delete cat')
+      if (chanSetBoats.size === 0 && (newState.channel == null || newState.channel.parentId != newState.guild.channels.cache.find(c => c.name === categoryStartName))) {
+        newState.guild.channels.cache.find(c => c.name === categoryPlayName && c.type === 'GUILD_CATEGORY').delete()
+      }
+
+    }
+
+    if (oldState.channel != null && oldState.channel.members.size === 0 && chanSetBoats.has(oldState.channel.id)) {
       // console.log('leaving')
 
       chanSetBoats.delete(oldState.channel.id)
       oldState.channel.delete()
 
-      if (chanSetBoats.size === 0  && (newState.channel == null || newState.channel.parentId != newState.guild.channels.cache.find(c => c.name === categoryStartName))) {
-        // console.log('delete cat')
 
-        newState.guild.channels.cache.find(c => c.name === categoryPlayName && c.type === 'GUILD_CATEGORY').delete()
-      }
+      setTimeout(CategoryDelete, 800)
     }
+
+
+
   })
 }

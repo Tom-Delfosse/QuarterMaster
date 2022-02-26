@@ -18,10 +18,10 @@ module.exports = (client) => {
         ' ' + 
         months[currentDate.getMonth()] +
         ' ' + currentDate.getFullYear() +
-        ' à ' + currentDate.getHours() +
+        ' à ' + (currentDate.getHours() + 1)  +
         ':' + 
         minutes +
-        ".\nCode de l'utilisateur : //" +
+        " UTC+1.\nCode de l'utilisateur : //" +
         message.author.id +
         '\n__'
         )

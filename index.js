@@ -22,7 +22,7 @@ const categoryStartName = "══❰ Créer un équipage ❱══"
 const vocalChans = new Array(
   { id : '938148587207032862', userCap: '0', prefix: 'Sloop — ', name: "「🚣」Créer un Sloop"},
   { id : '938148641120612442', userCap: '0', prefix: 'Brig — ', name: "「⛵」Créer un Brig"},
-  { id : '938148679804665916', userCap: '0', prefix: 'Gallion — ', name: "「🚢」Créer un Gallion"}) 
+  { id : '938148679804665916', userCap: '0', prefix: 'Galion — ', name: "「🚢」Créer un Galion"}) 
 
 const client = new Client({ intents: [Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_PRESENCES], partials: ["CHANNEL"]})
 client.login()

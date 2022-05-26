@@ -35,7 +35,7 @@ client.on('ready', () => {
   privateMsg(client)
   privateAnswer(client)
   everyonePingRemove(client)
-  annoucements(client, '/say')
+  annoucements(client, '!say')
   client.user.setActivity(`l'équipage`, {
     type: 'LISTENING'
   })

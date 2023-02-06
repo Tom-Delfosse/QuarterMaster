@@ -1,10 +1,10 @@
 module.exports = (client, chanSet) => {
   client.on("voiceStateUpdate", (oldState, newState) => {
 
-    if (newState.channel != null && newState.channel.name === '➕ Lancer une partie') {
+    if (newState.channel != null && newState.channel.name === '[➕] Lancer un vocal') {
 
       let chanCreate = () => {
-        let chanName = '☕ La cafète'
+        let chanName = '「🍻」salon'
 
         let user = newState.guild.presences.cache.filter(user => user.userId === newState.member.id).map((member) => member)
         if (user.length !== 0) {

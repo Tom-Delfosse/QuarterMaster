@@ -1,7 +1,7 @@
 module.exports = (client, chanSet) => {
   client.on("voiceStateUpdate", (oldState, newState) => {
 
-    if (newState.channel != null && newState.channel.name === '[➕] Lancer un vocal') {
+    if (newState.channel != null && newState.channel.name === '「➕」Lancer un vocal') {
 
       let chanCreate = () => {
         let chanName = '「🍻」salon'
